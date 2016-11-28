@@ -52,21 +52,20 @@ void setup(){
 
 void loop() {
   readData();
-  Wire.beginTransmission(8); // transmit to device #8
-  Wire.write("x is ");        // sends five bytes
-  Wire.write(x);              // sends one byte
-  Wire.endTransmission();    // stop transmitting
+  
+  Wire.beginTransmission(8);
+  Wire.write(motorValue[0]);
+  Wire.endTransmission();    
 
-  x++;
-  delay(500);
+  delay (500);
 }
 
 void readData(){
   if(MPR121.touchStatusChanged()) MPR121.updateTouchData();
-    for(int i=0; i<9; i++){     
-      motorReceived[i] = MPR121.getTouchData(i);
-      motorValue[i] = byte(motorReceived[i]);
-    }   
-    
+  for(int i=0; i<9; i++){     
+    motorReceived[i] = MPR121.getTouchData(i);
+    motorValue[i] = char(motorReceived[i]);
+  }       
 }
+
 

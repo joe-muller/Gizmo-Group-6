@@ -18,7 +18,5 @@ void receiveEvent(int howMany) {
   while (Wire.available()) {
     char c = Wire.read(); 
     Serial.print(c);       
-  }
-  int x = Wire.read();    
-  Serial.println(x);      
+  } 
 }
